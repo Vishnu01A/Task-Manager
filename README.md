@@ -1,1 +1,1 @@
-a learning project to understand react. code credits - Travesy Media
+a learning project to understand react. Code credits - Traversy Media
