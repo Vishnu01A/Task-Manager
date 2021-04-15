@@ -5,8 +5,32 @@ import Footer from './components/Footer'
 import Tasks from './components/Tasks'
 import AddTask from './components/AddTask'
 import About from './components/About'
+import Box from '@material-ui/core/Box';
+import { ThemeProvider } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
+
+
+const theme = createMuiTheme({
+  spacing: value => value ** 2,
+  palette: {
+    default: {
+      main: '#000000'
+    },
+  primary: {
+      main: '#FF0000'
+    },
+  secondary: {
+    main: '#009933'
+  },
+  info: {
+    main: '#000000'
+  }
+  }
+  }
+);
 
 function App() {
+  
   const [showAddTask, setShowAddTask] = useState(false)
   const [tasks, setTasks] = useState([])
     
@@ -68,9 +92,13 @@ function App() {
       tasks.map((task) => task.id === id ? {...task, reminder: data.reminder} : task)
     )
   }
+
+
+
   return (
+    <ThemeProvider theme={theme}>
     <Router>
-    <div className="container">
+    <Box className="container">
       <Header onAdd={() => setShowAddTask(!showAddTask)} showAdd={showAddTask} />
       <Route path='/' exact render={(props) => (
         <>
@@ -80,14 +108,17 @@ function App() {
       ) : (
         'No tasks to show'
       )}
+      <Footer />
       </>
       )}
       />
       <Route path='/about' component={About} />
-      <Footer />
-    </div>
+      
+    </Box>
     </Router>
+    </ThemeProvider>
   )
+
 }
 
 export default App;

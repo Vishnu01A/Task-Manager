@@ -1,11 +1,16 @@
-import{ FaTimes } from 'react-icons/fa'
+import Paper from '@material-ui/core/Paper';
+import Box from '@material-ui/core/Box';
+import ClearOutlinedIcon from '@material-ui/icons/ClearOutlined';
+
 
 const Task = ({task, onDeleteTask, onToggle }) => {
     return (
-        <div className={`task ${task.reminder ? 'reminder':''}`} onDoubleClick={() => onToggle(task.id)}>
-            <h3>{task.text}{' '}<FaTimes style = {{cursor: 'pointer'}} onClick={() => onDeleteTask(task.id)} /></h3>
+        <Paper className={`task ${task.reminder ? 'reminder':''}`} onDoubleClick={() => onToggle(task.id)} m={1}>
+            <Box m={1}>
+            <h3>{task.text}{' '}<ClearOutlinedIcon style = {{cursor: 'pointer'}} fontSize='small' onClick={() => onDeleteTask(task.id)} /></h3>
             <p>{task.day}</p>
-        </div>
+            </Box>            
+        </Paper>
     )
 }
 
